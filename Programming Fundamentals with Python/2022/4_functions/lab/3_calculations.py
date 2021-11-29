@@ -10,12 +10,12 @@ def calc_func(c, a, b):
     if c == operators[0]:
         result = a * b
     if c == operators[1]:
-        result = a / b
+        result = a // b
     if c == operators[2]:
         result = a + b
     if c == operators[3]:
         result = a - b
-    return result
-    print(int(result))
+    return int(result)
+    print(result)
 
 print(calc_func(op, int1, int2))
