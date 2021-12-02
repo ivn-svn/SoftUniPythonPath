@@ -7,13 +7,16 @@
 a = int(input())
 b = int(input())
 c = int(input())
+
+
 def add_and_subtract(x, y, z):
-    def sum_numbers(x, y):
-        g = x + y
+    def sum_numbers(m, n):
+        g = m + n
         return g
     def subtract(z):
-        k = g - z
+        val = sum_numbers(x, y)
+        k = val - z
         return k
-    sum_numbers(a, b)
-    print(subtract(c))
+    newval = subtract(c)
+    return newval
 print(add_and_subtract(a, b, c))
