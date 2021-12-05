@@ -8,20 +8,15 @@
 # there will be no case where the first number will get greater than 9
 # Example
 current_ver = input()
+joinednodot = ''
 next_ver = ''
+next_verlist = ''
 #
 current_ver_list = current_ver.split('.')
-for x in range(len(current_ver_list) -1, 0, -1):
-    if current_ver_list[2] == '9':
-        current_ver_list[2] = '0'
-        if current_ver_list[1] != 9:
-            current_ver_list[1] = str(int(current_ver_list[1]) + 1)
-            break
-        elif current_ver_list[1] == '9':
-            current_ver_list[1] = '0'
-            current_ver_list[0] = str(int(current_ver_list[0]) + 1)
-    else:
-        current_ver_list[2] = str(int(current_ver_list[x]) + 1)
-        next_ver = '.'.join(current_ver_list)
-        break
+# string to hold the joined values of ''.join(current_ver_list)
+joinednodot = ''.join(current_ver_list)
+# print(joinednodot)
+next_ver = int(joinednodot) + 1
+next_verlist = list(str(next_ver))
+next_ver = '.'.join(next_verlist)
 print(next_ver)
