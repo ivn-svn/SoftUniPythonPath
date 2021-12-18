@@ -15,7 +15,7 @@ for i in range(len(wealthlistints)):
             wealthlistints[i - 1] += dif
     else:
         pass
-if not min(wealthlistints) >= minwealth:
+if min(wealthlistints) < minwealth:
     print("No equal distribution possible")
 else:
     print(wealthlistints)
