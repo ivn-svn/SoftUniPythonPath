@@ -9,10 +9,10 @@ for i in range(len(wealthlistints)):
     robtherich = wealthlistints.index(wealthiest)
     poorest = min(wealthlistints)
     if wealthlistints[i - 1] < minwealth:
-        dif = minwealth - poorest
+        #dif = minwealth - poorest
         while wealthlistints[i - 1] < minwealth:
-            wealthlistints[robtherich] -= dif
-            wealthlistints[i - 1] += dif
+            wealthlistints[robtherich] -= 1 #dif
+            wealthlistints[i - 1] += 1 #dif
     else:
         pass
 if min(wealthlistints) < minwealth:
