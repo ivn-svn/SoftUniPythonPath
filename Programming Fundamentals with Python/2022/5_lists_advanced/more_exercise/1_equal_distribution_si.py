@@ -8,8 +8,14 @@ for i in range(len(wealthlistints)):
     wealthiest = max(wealthlistints)
     robtherich = wealthlistints.index(wealthiest)
     poorest = min(wealthlistints)
-    while wealthlistints[i - 1] < minwealth:
-        wealthlistints[robtherich] -= 1
-        wealthlistints[i - 1] += 1
-wealthlistints = sorted(wealthlistints)
-print(wealthlistints)
+    if wealthlistints[i - 1] < minwealth:
+        dif = minwealth - poorest
+        while wealthlistints[i - 1] < minwealth:
+            wealthlistints[robtherich] -= dif
+            wealthlistints[i - 1] += dif
+    else:
+        pass
+if not min(wealthlistints) >= minwealth:
+    print("No equal distribution possible")
+else:
+    print(wealthlistints)
