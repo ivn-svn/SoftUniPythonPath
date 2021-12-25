@@ -19,26 +19,28 @@
 # Output
 #     • Print the gifts in the format described above.
 gifts = input().split(' ')
-commands = input().split(' ')
+commands = ''
 
-
-def cmd_analyzer(cmd, gifts):
+#############
+def cmd_analyzer(cmd, g):
     if len(cmd) == 2:
         if cmd[0] == 'OutOfStock':
-            str(gifts).replace(list(gifts)[int(cmd[1])], cmd[0])
-            gifts = list(gifts)
+            for i in range(len(g) - 1):
+                if g[i] == cmd[1]:
+                    g[i] = 'None'
         elif cmd[0] == 'JustInCase':
-            list(gifts)[len(gifts) - 1] = cmd[1]
+            gifts[len(g) - 1] = cmd[1]
     elif len(cmd) == 3:
         if cmd[0] == 'Required': # check if is required
-            gifts = str(gifts)
-            gifts.replace(cmd[1], 'None')
-            gifts = list(gifts)
+            g[int(cmd[2])] = cmd[1]
     return gifts
+#############
 
-while commands != 'No Money':
-    commands = input().split(' ')
-    gifts = cmd_analyzer(commands, gifts)
+while 'No Money' not in str(commands):
+    commands = input()
+    list_commands = commands.split(' ')
+    string_commands = str(commands)
+    gifts = str(cmd_analyzer(list_commands, gifts))
 else:
-    finalgiftslist = [g for g in list(gifts) if g != 'None']
+    finalgiftslist = str([g for g in list(gifts) if g != 'None'])
 print(finalgiftslist)
