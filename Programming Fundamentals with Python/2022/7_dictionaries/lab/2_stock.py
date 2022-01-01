@@ -4,3 +4,12 @@
 # On the following line, you will be given products to search for. Check for each product. You have 2 possibilities:
 #     • If you have the product, print "We have {quantity} of {product} left".
 #     • Otherwise, print "Sorry, we don't have {product}".
+elements = input().split(" ")
+bakery = {}
+# Fill in the products in the dictionary
+searched_products = input().split(" ")
+for product in searched_products:
+if product in bakery:
+print(f"We have {bakery[product]} of {product} left")
+else:
+print(f"Sorry, we don't have {product}")
