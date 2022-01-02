@@ -12,8 +12,6 @@ students_dict = {}
 printin = ''
 def printable_func(useri):
     getc = useri.replace("_", " ")
-    # for (key, value) in students_dict:
-    #     return f"{value[0]}-{value[1]}"
     j = students_dict.keys()
     x = [z for z in j if getc in students_dict[z]]
     for i in x:
@@ -32,7 +30,6 @@ while endread != True:
         user_input = input()
         if ':' not in user_input:
             printin = printable_func(user_input)
-            print(printin)
             break
         else:
             name = user_input.split(':')[0]
