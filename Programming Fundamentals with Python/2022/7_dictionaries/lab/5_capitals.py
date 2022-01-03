@@ -5,6 +5,7 @@
 # line in the following format: "{country} -> {capital}".
 country = ''
 capital = ''
+# dict_variable = {key:value for (key,value) in dictonary.items()}
 
 
 print(f"{country} -> {capital}")
