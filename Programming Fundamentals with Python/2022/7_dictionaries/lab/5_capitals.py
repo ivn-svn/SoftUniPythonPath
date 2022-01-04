@@ -3,10 +3,9 @@
 # separated by comma and space ", ", and their corresponding capital cities on the second line 
 # (again separated by comma and space ", "). Print each country with their capital on a separate 
 # line in the following format: "{country} -> {capital}".
-country = ''
-capital = ''
-# dict_variable = {key:value for (key,value) in dictonary.items()}
-
-
-print(f"{country} -> {capital}")
+country = input().split(', ')
+capital = input().split(', ')
+capitals_countries = zip(country, capital)
+for (keys, values) in capitals_countries:
+    print(f"{keys} -> {values}")
 #
