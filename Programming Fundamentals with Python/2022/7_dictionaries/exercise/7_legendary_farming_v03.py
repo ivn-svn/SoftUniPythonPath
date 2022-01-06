@@ -1,4 +1,3 @@
-
 import string
 
 user_input = input().lower()
@@ -25,13 +24,16 @@ for (keys, values) in resources.items():
         winermaterial = keys
         item_obt = string.capwords(legendary_items[keys])
         print(f"{item_obt} obtained!")
+    # else:
+    #     item_obt = None
 for (keys, values) in resources.items():
-    if legendary_items[keys] != item_obt.lower() and item_obt != '':
-        print(f"{keys}: {values}")
-    elif item_obt == '':
+    if legendary_items[keys] != item_obt.lower():
         print(f"{keys}: {values}")
     else:
         winermaterialint = (int(resources[winermaterial]) - 250)
         print(f"{winermaterial}: {winermaterialint}")
 for (keys, values) in junk.items():
     print(f"{keys}: {values}")
+
+    #
+    # Да се изясни какво става, ако стойността на сумата на който и да е от ресурсите не достига до 250... 
