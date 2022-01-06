@@ -25,4 +25,28 @@
 # IceTea -> 75.00
 # NukaCola -> 264.00
 # Water -> 500.00
+price_dict = {}
+quantity_dict = {}
+user_input = ''
+totalprice_dict = {}
+while user_input != 'buy':
+    user_input = input()
+    if user_input == 'buy':
+        break
+    else:
+        user_input = user_input.split(' ')
+        name = user_input[0]
+        price = float(user_input[1])
+        quantity = int(user_input[2])
+        if name not in price_dict.keys() and name not in quantity_dict.keys():
+            quantity_dict[name] = quantity
+            price_dict[name] = price
+        elif name in price_dict.keys() and name in quantity_dict.keys():
+            quantity_dict[name] += quantity
+            price_dict[name] = price 
+totalprice_dict = {}
 
+for (keys, values) in price_dict.items():
+    totalprice_dict[keys] = values * quantity_dict[keys]
+for (keys, values) in totalprice_dict.items():
+    print(f"{keys} -> {values:.2f}")  
