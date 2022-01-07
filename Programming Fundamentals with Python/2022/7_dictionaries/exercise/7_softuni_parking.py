@@ -41,7 +41,7 @@ for i in range(0, n):
         username = user_input[1]
         plate_number = user_input[2]
         if plate_number in username_plate_db.values():
-            print(f'ERROR: already registered with plate number #  {plate_number}')
+            print(f'ERROR: already registered with plate number {plate_number}')
         elif plate_number not in username_plate_db.values():
             username_plate_db[username] = plate_number
             print(f'{username} registered {plate_number} successfully')
