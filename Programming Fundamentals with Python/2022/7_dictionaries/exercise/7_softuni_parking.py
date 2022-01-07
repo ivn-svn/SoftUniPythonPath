@@ -21,9 +21,10 @@
 # 	•	Register: "register {username} {license_plate_number}"
 # 	•	Unregister: "unregister {username}"
 # The input will always be valid, and you do not need to check it explicitly.
-# 
+#
 n = int(input())
 user_input = ''
+username_plate_db = {}
 for i in range(0, n):
     user_input = input()
     user_input = user_input.split(' ')
@@ -36,13 +37,12 @@ for i in range(0, n):
             print(f'ERROR: user {username} not found')
 
     elif 'register' in user_input:
-        username = user_input[1]
         action = user_input[0]
+        username = user_input[1]
         plate_number = user_input[2]
-        username_plate_db = {}
-        if plate_number in username_plate_db.keys():
+        if plate_number in username_plate_db.values():
             print(f'ERROR: already registered with plate number #  {plate_number}')
-        elif plate_number not in username_plate_db.keys():
+        elif plate_number not in username_plate_db.values():
             username_plate_db[username] = plate_number
             print(f'{username} registered {plate_number} successfully')
 for (keys, values) in username_plate_db.items():
