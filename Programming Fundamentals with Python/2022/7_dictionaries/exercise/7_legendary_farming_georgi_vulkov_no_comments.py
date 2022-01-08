@@ -1,11 +1,6 @@
 from collections import OrderedDict
 
 
-# def print_dict(dictionary, template):
-#     for k, v in dictionary.items():  # k - key, v - value
-#         print(template.format(k, v))
-
-
 key_materials_1 = {
     'shards': 0,
     'fragments': 0,
