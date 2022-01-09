@@ -14,12 +14,26 @@
 user_input = input()
 explosion = False
 index = 0
-explosions_list = []
-damage = []
-reduced_list = ''
-for char in user_input:
-    if char == '>':
-        explosion = True
-        explosions_list.append(index)
-        damage.append([])
+damage = 0
+explosion_int_at_index = {}
+pass_this_index = []
+additional = 0
+for char in range(0, len(user_input)):
+    if user_input[char] == '>':
+        damage = user_input[index + 1]
+        explosion_int_at_index[index] = int(damage)
     index += 1
+
+
+for key, value in explosion_int_at_index.items():
+
+    for item in range(key, value):
+        if user_input[item] == '>':
+            unwanted = user_input[value + 1]
+        else:
+            unwanted = user_input[item]
+        pass_this_index.append(unwanted)
+
+reduced_list = [ele for ele in user_input if ele not in pass_this_index]
+print(reduced_list)
+print(explosion_int_at_index)
