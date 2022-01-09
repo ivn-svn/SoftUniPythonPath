@@ -20,15 +20,17 @@ str2 = user_input[1]
 
 
 if len(str1) > len(str2):
-    rest = [ord(x) for x in str1[slice(len(str1) - len(str2))]]
-    print(rest)
+    # str1 = str1[::-1]
+    rest = [ord(x) for x in str1[::-1][slice(len(str1) - len(str2))]]
+    #print(rest)
     restsum = sum(rest)
     str1 = str1[slice(len(str2))]
     result = sum(map(lambda x, y: ord(x) * ord(y), str1, str2)) + restsum
     
 elif len(str2) > len(str1):
-    rest = [ord(x) for x in str2[slice(len(str2) - len(str1))]]
-    print(rest)
+    # str2 = str2[::-1]
+    rest = [ord(x) for x in str2[::-1][slice(len(str2) - len(str1))]]
+    #print(rest)
     restsum = sum(rest)
     str2 = str2[slice(len(str1))]
     result = sum(map(lambda x, y: ord(x) * ord(y), str1, str2)) + restsum
