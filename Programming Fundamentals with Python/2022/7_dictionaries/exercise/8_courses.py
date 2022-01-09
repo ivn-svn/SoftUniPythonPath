@@ -28,9 +28,6 @@ while endloop != True:
         course_name = command_input[0]
         student_name = command_input[1]
         if student_name not in students_courses_db.values() and course_name in students_courses_db.keys():
-            # if objlen >= 2:
-            #     students_courses_db[course_name] = students_courses_db[course_name].append(student_name)
-            # else:
             students_courses_db[course_name] = students_courses_db[course_name] + [student_name]
         elif course_name not in students_courses_db.items():
             students_courses_db[course_name] = [student_name]
