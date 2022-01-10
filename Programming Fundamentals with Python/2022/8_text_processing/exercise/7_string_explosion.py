@@ -11,32 +11,20 @@
 #     • You will always receive strength for the explosions
 #     • The path will consist only of letters from the Latin alphabet, integers, and the char '>'
 #     • The strength of the punches will be in the interval [0…9]
-user_input = input()
-explosion = False
-index = 0
-damage = 0
-explosion_int_at_index = {}
-pass_this_index = []
-additional = 0
-unwanted = ''
-for char in range(0, len(user_input)):
-    if user_input[char] == '>':
-        damage = user_input[index + 1]
-        explosion_int_at_index[index] = int(damage)
-    index += 1
+enter = input()
 
+new_list = ""
+explosion = 0
+lenght = 0
 
-for key, value in explosion_int_at_index.items():
-
-    for item in range(key, value):
-        if user_input[item] == '>':
-            unwanted = user_input[value + 1]
-            print(unwanted)
+while lenght < len(enter):
+    for i in range(len(enter)):
+        if not enter[i] == ">" and explosion > 0:
+            explosion -= 1
+        elif enter[i] == ">":
+            explosion += int(enter[i + 1])
+            new_list += enter[i]
         else:
-            unwanted = user_input[item]
-            print(unwanted)
-        pass_this_index.append(unwanted)
-
-reduced_list = [ele for ele in user_input if ele not in pass_this_index]
-print(reduced_list)
-print(explosion_int_at_index)
+            new_list += enter[i]
+        lenght += 1
+print(new_list)
