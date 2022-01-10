@@ -9,21 +9,22 @@ person_age = 0
 n_lines = int(input())
 person_dict = {}
 user_input = ''
+user_inputs = []
 for i in range(0, n_lines):
     user_input = input()
     #
+    user_inputs.append(user_input)
 # For loop to identify names:
-for item in user_input.split(' '):
-    if '@' and '|' in item:
-        person_name = item.replace('@', '')
-        person_name = person_name.replace('|', '')
-        person_dict[person_name] = 0
-    if '#' and '*' in item:
-        person_age = item.replace('#', '')
-        person_age = person_age.replace('*', '')
-        person_age = int(person_age)
-        person_dict[person_name] += person_age
-    #
+for inp in user_inputs:
+    for item in inp.split(' '):
+        if '@' and '|' in item:
+            person_name = item[slice(item.index('@') + 1, item.index('|'))]
+            person_dict[person_name] = 0
+        if '#' and '*' in item:
+            person_age = item[slice(item.index('#') + 1, item.index('*'))]
+            person_age = int(person_age)
+            person_dict[person_name] += person_age
+        #
 # For loop to output the values:
 for (name, age) in person_dict.items():
 
