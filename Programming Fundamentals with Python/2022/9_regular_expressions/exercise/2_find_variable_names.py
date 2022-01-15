@@ -12,7 +12,7 @@
 # area,perfectRectangle
 # validVariable
 import re
-pattern = r"_\w+"
+pattern = r"(?<!_)\w+"
 
 user_input = input()
 matches = re.finditer(pattern, user_input)
