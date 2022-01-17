@@ -16,9 +16,15 @@
 import re
 user_input = input()
 
-# searchword = input()
-pattern = f"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+"
+pattern = r"(\b\S+@\S+\b)"
 
 matches = re.findall(pattern, user_input)
 for match in matches:
     print(match, end="\n")
+
+    # currently working with 25% solution:
+    # ([A - Za - z0 - 9] + [. - _] *[A-Za-z0-9]+[@][A-Za-z0-9-]+(\.[A-Z | a-z]{2, }) +)
+    # Last submitted at 50% with:
+    # ([A-Za-z0-9]+[.-_]*[A-Za-z0-9]+[@][A-Za-z0-9-]+(?:\.[A-Z|a-z]{2,})+)
+    # 75% solution points awarded by SoftUni judge for regex:
+    # (\b\S+@\S+\b)

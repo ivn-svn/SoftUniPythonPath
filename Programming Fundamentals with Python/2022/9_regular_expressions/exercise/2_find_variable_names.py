@@ -12,11 +12,15 @@
 # area,perfectRectangle
 # validVariable
 import re
-pattern = r"(?<!_)\w+"
+# pattern = r"(?<!_)\w+"
+pattern = r"((?<=_)[A-z]+(?=_))|((?<=__)[A-z]+)|((?<=_)[A-z]+)|([A-z]+(?=_))"
 
 user_input = input()
 matches = re.finditer(pattern, user_input)
+lstmap = []
 
 
 for match in matches:
-    print(match.group(0), end=" ")
+    lstmap.append(match.group(0))
+print(",".join(lstmap))
+
