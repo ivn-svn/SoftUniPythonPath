@@ -4,3 +4,7 @@
 # starting from the value of the factor.
 factor = int(input())
 count = int(input())
+factor_count = []
+for idx in range(1, count + 1):
+    factor_count.append(idx * factor)
+print(factor_count)
