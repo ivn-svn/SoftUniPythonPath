@@ -7,10 +7,10 @@ for word in user_input:
     newstr = ''
 
     for letter in word:
-        newletter = ord(letter) + 2
-        # print(newletter)
-        if newletter > 122:
-            newletter = (newletter - 97) % 26 + 97 
+        if ord(letter) >= 97:
+            newletter = (ord(letter) - 97 + 2) % 26 + 97 
+        else:
+            newletter = (ord(letter))
         newstr += chr(newletter)
 
     new_output.append(newstr)
