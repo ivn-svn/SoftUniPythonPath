@@ -25,4 +25,3 @@ for day in range(1, days + 1):
             coins -= (party_size * food)
 coins_received = coins // party_size
 print(f"{party_size} companions received {round(coins_received)} coins each.")
-# filepath : "D:\Python\SoftUni_docs\Fundamentals Python Course\07_Data_Types_Variables\01. Integer Operations_Problem Description.docday"
