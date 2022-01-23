@@ -1,9 +1,12 @@
 import re
 pattern = r"(([1-9][0-9]*)|0$)"
-
+matches = []
 user_input = input()
-matches = re.finditer(pattern, user_input)
+while user_input != '':
+    matches += re.findall(pattern, user_input)
+    user_input = input()
 
 
 for match in matches:
-    print(match.group(0), end=" ")
+
+    print(match, end=" ")
