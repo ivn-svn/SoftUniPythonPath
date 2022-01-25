@@ -30,9 +30,13 @@ for word in user_input:
     concat_str = chr(int(ord_char)) + final_str
     second_letter = concat_str[1]
     last_letter = concat_str[len(concat_str) - 1]
-    placeholder = '^'
-    concat_str = concat_str.replace(last_letter, placeholder)
-    concat_str = concat_str.replace(second_letter, last_letter)
-    concat_str = concat_str.replace(placeholder, second_letter)
-    printable_list.append(concat_str)
+    # placeholder = '^'
+    # concat_str = concat_str.replace(last_letter, placeholder)
+    # concat_str = concat_str.replace(second_letter, last_letter)
+    # concat_str = concat_str.replace(placeholder, second_letter)
+    fst = [concat_str[x] for x in range(2, len(concat_str) -1)]
+    #scd = [fst[y] for y in range(1, len(fst) -1)]
+    trd = list(chr(int(ord_char))) + list(last_letter) + list(fst) + list(second_letter)
+    trd = ''.join(trd)
+    printable_list.append(trd)
 print(' '.join(printable_list))
