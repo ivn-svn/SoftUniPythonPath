@@ -5,6 +5,10 @@
 #
 # Output:
 # Ready set go
+
+# Useful link for reference & help:
+# https://docs.python.org/3/tutorial/datastructures.html
+#
 user_input = input().split(" ")
 first_letter = ''
 second_letter = ''
