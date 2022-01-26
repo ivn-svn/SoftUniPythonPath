@@ -1,12 +1,7 @@
-# Reworking vars:
-# line = 'Kong Panda'
-# index = line.find('Panda')
-# output_line = line[:index] + 'Fu ' + line[index:]
-# output_line
-#
 initial_string = input()
 #
 final_string = initial_string
+end_cycle = False
 
 
 def perform_action(cmd, final_str):
@@ -37,11 +32,16 @@ command = ''
 commands = []
 
 #
-while command != "Travel":
+while command != "Travel" and end_cycle == False:
     command = input()
-    commands.append(command)
-    final_string = perform_action(command, final_string)
-    print(final_string)
+    if command != "Travel":
+        commands.append(command)
+        final_string = perform_action(command, final_string)
+        print(final_string)
+    elif command == "Travel":
+        end_cycle = True
+
+
 
 else:
     print(f"Ready for world tour! Planned stops: {final_string}")
