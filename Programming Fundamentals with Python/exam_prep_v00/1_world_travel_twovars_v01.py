@@ -19,7 +19,15 @@ def perform_action(cmd, final_str):
         if index and index1 <= len(final_str):
             iten = final_str[index:index1]
             final_str = final_str.replace(iten, '')
-    elif 'switch' in cmd_split[0].lower():  # TODO: finish the switch func
+    elif 'switch' in cmd_split[0].lower():  # TODO: find out why Judge rates it with only 83% #
+        # Test  # 5 (Incorrect answer)
+        # Time
+        # used: 0.030
+        # s
+        # Memory
+        # used: 0.00
+        # MB
+
         old = cmd_split[1]
         new = cmd_split[2]
         if old in final_str:
