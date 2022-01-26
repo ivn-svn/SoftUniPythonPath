@@ -7,12 +7,12 @@
 initial_string = input()
 #
 final_string = initial_string
-def perform_action(cmd, stp_lst, init_str, final_str):
+def perform_action(cmd, final_str):
     cmd_split = cmd.split(':')
     if 'add' in cmd_split[0].lower():
         index = int(cmd_split[1])
         stop_name = cmd_split[2]
-        if index <= len(init_str):
+        if index <= len(final_str):
             # stp_lst.insert(index, stop_name)
             # Reworking the above:
             final_str = final_str[:index] + stop_name + final_str[index:]
@@ -26,21 +26,22 @@ def perform_action(cmd, stp_lst, init_str, final_str):
             # for item in pop_items:
             #     stp_lst.pop(item)        
     elif 'switch' in cmd_split[0].lower(): #TODO: finish the switch func 
-        old = cmd_split[0]
-        new = cmd_split[1]
+        old = cmd_split[1]
+        new = cmd_split[2]
         if old in final_str:  
             # old_overwrite = stp_lst.index(old)
             # new_overwrite = stp_lst.index(new)
             final_str.replace(old, new)  
                 
-    return final_str
+    return final_str    
 command = ''
 commands = []
 stops_list = ''
+#
 while command != "Travel":
     command = input()
-    commands = stops_list.append(command)
-    stops_list = perform_action(command, stops_list, initial_string, final_string)
+    commands.append(command)
+    stops_list = perform_action(command, final_string)
     print(stops_list)
 
 else:
