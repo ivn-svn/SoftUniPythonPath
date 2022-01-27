@@ -15,3 +15,47 @@
 # The calories will be an integer between 0-10000
 # Calculate the total calories of all food items and then determine how many days you can last with the food you have.
 # Keep in mind that you need 2000kcal a day.
+import re
+
+
+def split_items(lstp):
+    for item in lstp:
+        item_splited = item.strip("#|")
+        item_splited = re.split("\#|\|", item_splited)
+        item_name = item_splited[0]
+        date = item_splited[1]
+        calories = int(item_splited[2])
+        print(f"Product: {item_name}, Date: {date}, Calories {calories}")
+
+
+text_string = input()
+
+total_calories = 0
+
+item_name = ''
+expiration_date = ''
+calories = 0
+days = 0
+# Operation vars:
+date = ''
+day = 0
+month = 0
+year = 0
+#
+needed_kcal = 2000
+#
+# The solution should consist of 2 parts:
+# 1. Regex to find the relevant data
+# 2. Algorithm to calculate food supply per day
+
+#
+txt = text_string
+list_products = re.findall(r"\#\w*\#\d*\/\d*\/\d*\#\d*\#|\|\w*\|\d*\/\d*\/\d*\|\d*\|", txt)
+print(list_products)
+
+split_items(list_products)
+
+# print(f"You have food to last you for: {days} days!")
+#
+#
+# print(f"Item: {item_name}, Best before: {expiration_date}, Nutrition: {calories}")
