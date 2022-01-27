@@ -18,19 +18,27 @@
 import re
 
 
-def split_items(lstp):
+
+total_calories = 0
+def split_items(lstp, tcal):
+    pri = []
     for item in lstp:
         item_splited = item.strip("#|")
         item_splited = re.split("\#|\|", item_splited)
         item_name = item_splited[0]
         date = item_splited[1]
         calories = int(item_splited[2])
-        print(f"Product: {item_name}, Date: {date}, Calories {calories}")
-
+        tcal += calories
+        pri.append(f"Item: {item_name}, Best before: {date}, Nutrition: {calories}")
+    days = tcal // needed_kcal
+    days = int(days)
+    print(f"You have food to last you for: {days} days!")
+    for p in pri:
+        print(p)
+    return pri, tcal, days
 
 text_string = input()
 
-total_calories = 0
 
 item_name = ''
 expiration_date = ''
@@ -38,9 +46,7 @@ calories = 0
 days = 0
 # Operation vars:
 date = ''
-day = 0
-month = 0
-year = 0
+
 #
 needed_kcal = 2000
 #
@@ -50,10 +56,11 @@ needed_kcal = 2000
 
 #
 txt = text_string
-list_products = re.findall(r"\#\w*\#\d*\/\d*\/\d*\#\d*\#|\|\w*\|\d*\/\d*\/\d*\|\d*\|", txt)
-print(list_products)
+list_products = re.findall(r"\#\w*\#\d*\/\d*\/\d*\#\d*\#|\|\w*\|\d*\/\d*\/\d*\|\d*\||\#\w*\s\w*\#\d*\/\d*\/\d*\#\d*\#", txt)
 
-split_items(list_products)
+
+printable, total_calories, days_ = split_items(list_products, total_calories)
+#print(total_calories)
 
 # print(f"You have food to last you for: {days} days!")
 #
