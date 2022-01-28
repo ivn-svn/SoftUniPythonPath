@@ -16,7 +16,7 @@ def perform_action(cmd, final_str):
     elif 'remove' in cmd_split[0].lower():
         index = int(cmd_split[1])
         index1 = int(cmd_split[2]) + 1
-        if index and index1 <= len(final_str):
+        if index <= len(final_str) and index1 <= len(final_str):
             iten = final_str[index:index1]
             final_str = final_str.replace(iten, '')
     elif 'switch' in cmd_split[0].lower():  # TODO: find out why Judge rates it with only 83% #
