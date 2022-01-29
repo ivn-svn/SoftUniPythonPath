@@ -10,11 +10,11 @@
 
 
 def disband_town(city, cities_wealth, cities_population):
-    if cities_population[city] or cities_wealth[city] <= 0:
+    if cities_population[city] <= 0 or cities_wealth[city] <= 0:
         del cities_wealth[city]
         del cities_population[city]
         print(f"{city} has been wiped off the map!")
-        return cities_wealth, cities_population
+    return cities_wealth, cities_population
 
 
 def check_negative(g):
@@ -38,59 +38,76 @@ def prewar_cities_state(city, population, gold, cities_wealth, cities_population
         return cities_wealth, cities_population
 
 
-def war_peace_events_func(city, population, gold, cities_wealth, cities_population, do_what): # same as prewar func but
+def war_peace_events_func(command, cities_wealth, cities_population, do_what, city):  # same as prewar func but
     # with 'do_what' variable
-    if check_negative(gold):
-        check_negative(gold) # TODO : Check if this function is okay to be called like this.
-        if city in cities_wealth.keys():
-            if do_what == "Prosper":
+
+    if city in cities_wealth.keys():
+        if do_what == "Prosper":
+
+            gold = int(command[2])
+            #
+            if not check_negative(gold):
+                check_negative(gold)
                 cities_wealth[city] += gold
                 total_gold = cities_wealth[city]
                 print(f"{gold} gold added to the city treasury. {city} now has {total_gold} gold.")
-            elif do_what == "Plunder":
+        elif do_what == "Plunder":
+
+            population = int(command[2])
+            gold = int(command[3])
+            if not check_negative(gold):
+                check_negative(gold)
                 cities_wealth[city] -= gold
                 cities_population[city] -= population
-                print(f"{city} plundered! {gold} gold stolen, {population} citizens killed.")
                 cities_wealth, cities_population = disband_town(city, cities_wealth, cities_population)
-        else:
-            pass
+                print(f"{city} plundered! {gold} gold stolen, {population} citizens killed.")
     return cities_wealth, cities_population
+
+
 command = ''
-#
+# Events
 city = ''
 population = 0
 gold = 0
 
-# Events
-town = ''
-people = 0
-gold = 0
-
 # Dictionaries
+
 
 cities_wealth = {}
 cities_population = {}
 
-
-while command != "Sail":
+sail = False
+end = False
+while not sail:
     command = input().split('||')
-    city = command[0]
-    population = int(command[1])
-    gold = int(command[2])
+    if "Sail" in command:
+        sail = True
+        break
+    else:
+        city = command[0]
+        population = int(command[1])
+        gold = int(command[2])
     #
     cities_wealth, cities_population = prewar_cities_state(city, population, gold, cities_wealth, cities_population)
-
 
 count = len(cities_wealth.keys())
 
 print(f"Ahoy, Captain! There are {count} wealthy settlements to go to:")
 
 # A 'While' cycle to gather Events data:
-while command != "End":
+while not end:
     command = input().split('=>')
-# TODO: Create a function to analyze the second row of inputs:
+    if "End" in command:
+        end = True
+        break
+    else:
+        # TODO: Check if war_peace function is appropriate for this purpose \/
+        do_what = command[0]
+        city = command[1]
+        cities_wealth, cities_population = war_peace_events_func(command, cities_wealth, cities_population, do_what,
+                                                                 city)
 
-
+print(cities_wealth, cities_population)
 
 # TODO: Create a function to finally print what's left on the map, or announce the total extermination:
 #
