@@ -7,18 +7,22 @@
 # "decrease" decreases all elements in the array with 1.
 
 # Master Class
-
-
-
 # user_input = input().split(' ')
 # command = user_input[0]
-initial_array = list(input())
+
+initial_array1 = input().split(' ')
+initial_array = [int(y) for y in initial_array1]
 current_list = initial_array
 #
+
 swap, multiply, decrease = 'swap', 'multiply', 'decrease'
 end = False
+#
 
-output = ''
+command = ''
+#
+output = []
+
 
 class Master:
     def __init__(self, index1, index2, current_list):
@@ -26,31 +30,39 @@ class Master:
         self.index2 = index2
         self.current_list = current_list
 
-class Swap(Master):
-    def __init__(self):
-        super().__init__()
 
-    def swap_(self, index1, index2, current_list):
+class Swap(Master):
+    def __init__(self, index1, index2, current_list):
+        super().__init__(index1, index2, current_list)
+        self.index1 = index1
+        self.index2 = index2
+        self.current_list = current_list
+
+    def swap_(self):
         swapped = current_list
         swapped[index1], swapped[index2] = swapped[index2], swapped[index1]
-        current_list = swapped
         return current_list
-    
 
-class Multiply(Master):  
-    def __init__(self):
-        super().__init__()
-    def multiply_():
+
+class Multiply(Master):
+    def __init__(self, index1, index2, current_list):
+        super().__init__(index1, index2, current_list)
+
+    def multiply_(self):
         current_list[index1] = (current_list[index1] * current_list[index2])
         return current_list
 
+
 class Decrease:
     def __init__(self, current_list):
-        current_list
+        self.current_list = current_list
+
     def decrease_(self, current_list):
+        self.current_list = current_list
         decreased = [int(x) - 1 for x in current_list]
         current_list = decreased
         return current_list
+
 
 while end == False:
     if command == 'end':
@@ -62,15 +74,18 @@ while end == False:
 
     if command == swap:
         index1, index2 = int(user_input[1]), int(user_input[2])
-        current_list = Swap.swap_(index1, index2, current_list)
+        current_list1 = Swap(index1, index2, current_list)
+        current_list = current_list1.swap_()
+
     elif command == multiply:
         index1, index2 = int(user_input[1]), int(user_input[2])
-        current_list = Multiply.multiply_(index1, index2, current_list)
+        current_list1 = Multiply(index1, index2, current_list)
+        current_list = current_list1.multiply_()
 
     elif command == decrease:
-        index1, index2 = int(user_input[1]), int(user_input[2])
-        current_list = Decrease.decrease_(index1, index2, current_list)
+        current_list1 = Decrease(current_list)
+        current_list = current_list1.decrease_()
 
 output = [str(x) for x in current_list]
-output = ', '.join(output)
-print(output)
+output1 = ', '.join(output)
+print(output1)
