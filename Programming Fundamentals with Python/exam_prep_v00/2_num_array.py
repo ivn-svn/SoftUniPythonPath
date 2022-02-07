@@ -34,9 +34,6 @@ class Master:
 class Swap(Master):
     def __init__(self, index1, index2, current_list):
         super().__init__(index1, index2, current_list)
-        self.index1 = index1
-        self.index2 = index2
-        self.current_list = current_list
 
     def swap_(self):
         swapped = current_list
@@ -57,9 +54,8 @@ class Decrease:
     def __init__(self, current_list):
         self.current_list = current_list
 
-    def decrease_(self, current_list):
-        self.current_list = current_list
-        decreased = [int(x) - 1 for x in current_list]
+    def decrease_(self):
+        decreased = [(int(x) - 1) for x in self.current_list]
         current_list = decreased
         return current_list
 
