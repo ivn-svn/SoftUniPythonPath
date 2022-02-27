@@ -6,4 +6,7 @@ My repo also contains:
 - Experimental code snippets
 - Useful tiny littly .py programs
 
+```
+..
+```
 ## www.SoftUni.bg Python Path
