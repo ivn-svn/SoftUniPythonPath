@@ -29,10 +29,8 @@ for taken in wagons:
 if tofill >= people:
     free = tofill - people
 else:
-    free = people - tofill
+    queue = people - tofill
 #
-
-position_free = 0
 place_taken = 0
 
 for place in wagons:
@@ -47,7 +45,6 @@ for i in range(people):
     else:
         break
 
-queue = people - free
 
 print(f"The lift has empty spots! {free}")
 print(f"There isn't enough space! {queue} people in a queue!\n {wagons}")
