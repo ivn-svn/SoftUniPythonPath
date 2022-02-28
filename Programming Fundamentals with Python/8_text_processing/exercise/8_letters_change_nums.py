@@ -28,4 +28,3 @@ for num in output:
 
 num_list = [int(x) for x in output]
 print(num_list)
-
