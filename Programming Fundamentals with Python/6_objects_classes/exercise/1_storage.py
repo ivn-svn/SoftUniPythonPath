@@ -1,16 +1,12 @@
-from numpy import product
-
-
 class Storage:
     def __init__(self, capacity):
         self.capacity = capacity
         self.storage = []
-        self.product = product
 
-    def add_product(product, capacity, storage):
+    def add_product(self, product):
         if capacity < len(storage) + 1:
             storage.append(product)
-    def get_products():
+    def get_products(self):
         print(storage)
 
 
