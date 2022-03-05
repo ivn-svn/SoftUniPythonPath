@@ -12,12 +12,14 @@
 # The items should be sorted alphabetically in ascending order.
 
 class Catalogue:
-    def __init__(self, catalogue_name):
-        self.people = []
-        party = Party()
-        line = input()
-        while line != "End":
-            party.people.append(line)
-            line = input()
-        print(f"Going: {', '.join(party.people)}")
-        print(f"Total: {len(party.people)}")
+    def __init__(self, name: str):
+        self.name = name
+        self.products = []
+
+    def add_product(self, product_name):
+        self.prodocts.append(product_name)
+    def get_by_letter(first_letter: str):
+        #
+        pass
+
+# ref link : https://stackoverflow.com/questions/9751554/list-as-a-member-of-a-python-class-why-is-its-contents-being-shared-across-all

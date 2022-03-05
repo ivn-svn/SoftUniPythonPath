@@ -3,18 +3,19 @@ class Storage:
         self.capacity = capacity
         self.storage = []
 
-    def add_product(self, product):
+    def add_product(self, product: str):
         if self.capacity > len(self.storage):
             self.storage.append(product)
 
     def get_products(self):
-        print(self.storage)
+        return self.storage
 
-#
-# storage = Storage(4)
-# storage.add_product("apple")
-# storage.add_product("banana")
-# storage.add_product("potato")
-# storage.add_product("tomato")
-# storage.add_product("bread")
-# print(storage.get_products())
+
+storage = Storage(4)
+storage.add_product("apple")
+storage.add_product("banana")
+storage.add_product("potato")
+storage.add_product("tomato")
+storage.add_product("bread")
+print(storage.get_products())
+# storage.get_products()
