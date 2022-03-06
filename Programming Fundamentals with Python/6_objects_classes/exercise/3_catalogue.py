@@ -15,12 +15,29 @@ class Catalogue:
     def __init__(self, name: str):
         self.name = name
         self.products = []
+        self.new_list = []
 
     def add_product(self, product_name):
-        self.prodocts.append(product_name)
-    def get_by_letter(first_letter: str):
-        #
-        pass
+        self.products.append(product_name)
 
+    def get_by_letter(self, first_letter: str):
+        new_list = [x for x in self.products if x[0] == first_letter]
+        return list(new_list)
+
+    def __repr__(self):
+        printable = catalogue.products
+        return "Items in the {} catalogue: {}".format(self.name, "\n".join(printable))
+        # return self.new_list
+
+
+catalogue = Catalogue("Furniture")
+catalogue.add_product("Sofa")
+catalogue.add_product("Mirror")
+catalogue.add_product("Desk")
+catalogue.add_product("Chair")
+catalogue.add_product("Carpet")
+print(catalogue.get_by_letter("C"))
+# print(catalogue.products)
+print(repr(catalogue))
 # ref link : https://stackoverflow.com/questions/9751554/list-as-a-member-of-a-python-class-why-is-its-contents-being-shared-across-all
 ###
