@@ -1,3 +1,5 @@
+# link to task: https://judge.softuni.org/Contests/Practice/Index/2517#1
+# https://pastebin.com/i7KrzpRK
 queue_waiting = int(input())
 current_state = input().split(' ')
 queue_var = queue_waiting
@@ -39,5 +41,8 @@ elif onboarded + queue_waiting == max_capacity:
     printable, queue_var = take_seats(current_state, queue_var)
     print(printable)
 elif queue_waiting == 0:
+    printable, queue_var = take_seats(current_state, queue_var)
+    print(printable)
+elif max_capacity - (onboarded + queue_waiting) == 0:
     printable, queue_var = take_seats(current_state, queue_var)
     print(printable)
