@@ -12,23 +12,4 @@
 # In the end, on the first line, print: "Destinations: {destinations joined by ', '}".
 # On the second line, print "Travel Points: {travel_points}".
 
-import re
 
-user_input = input()
-
-pattern = r"=([A-Z][a-z]+)=|\/([A-Z][a-z]+)\/"
-locations = []
-travel_points = 0
-
-matches = re.findall(pattern, user_input)
-for match_ in matches:
-    for match in match_:
-        if match != '':
-            travel_points += len(match)
-            locations.append(match)
-            # print(locations)
-
-printable = ', '.join(locations)
-
-print(f"Destinations: {printable}")
-print(f"Travel Points: {travel_points}")
