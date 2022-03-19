@@ -2,8 +2,8 @@
 cmd_ = ""
 init_str = input().split(" ")
 init_ints_list = [int(x) for x in init_str]
+stuff_to_remove = []
 while cmd_ != "End":
-    stuff_to_remove = []
     cmd = cmd_.split(" ")
     action = cmd[0]
     if action == "Shoot":
@@ -11,10 +11,10 @@ while cmd_ != "End":
         power = int(cmd[2])
         if idx < len(init_ints_list):
             # print(init_ints_list)
-            if init_ints_list[idx] - (pow(init_ints_list[idx], power)) <= 0:
+            if (init_ints_list[idx] - power) <= 0:
                 init_ints_list.pop(idx)
             else:
-                init_ints_list[idx] -= (pow(init_ints_list[idx], power))
+                init_ints_list[idx] -= power
             # print(init_ints_list)
         else:
             pass
@@ -31,14 +31,19 @@ while cmd_ != "End":
     elif action == "Strike":
         idx = int(cmd[1])
         radius = int(cmd[2])
-        if idx < len(init_ints_list):
+        # if idx < len(init_ints_list):
+        #     # print(init_ints_list)
+        # for i in range(0, radius):
+        positive = init_ints_list.index(int(init_ints_list[idx + radius + 1]))
+        rnegative = radius * -1
+        negative = init_ints_list.index(int(init_ints_list[idx + rnegative]))
+        if 0 <= negative < len(init_ints_list) and 0 <= positive < len(init_ints_list):
+            stuff_to_remove = init_ints_list[negative:positive]
+            # print(stuff_to_remove)
+            init_ints_list = [ll for ll in init_ints_list if ll not in stuff_to_remove]
             # print(init_ints_list)
-            for i in range(1, radius):
-                stuff_to_remove.append(init_ints_list[idx + i])
-                stuff_to_remove.append(init_ints_list[idx + (i * -1)])
-                stuff_to_remove.append(init_ints_list[idx])
-            for removable in stuff_to_remove:
-                init_ints_list.remove(removable)
+        # for removable in stuff_to_remove:
+        #     init_ints_list.remove(removable)
             # print(init_ints_list)
         else:
             print("Strike missed!")
