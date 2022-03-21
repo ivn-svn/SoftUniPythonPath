@@ -9,7 +9,7 @@ while cmd_ != "End":
     if action == "Shoot":
         idx = int(cmd[1])
         power = int(cmd[2])
-        if idx < len(init_ints_list):
+        if idx in range(len(init_ints_list)):
             if (init_ints_list[idx] - power) <= 0:
                 init_ints_list.pop(idx)
             else:
@@ -20,18 +20,18 @@ while cmd_ != "End":
     elif action == "Add":
         idx = int(cmd[1])
         value = int(cmd[2])
-        if idx < len(init_ints_list):
+        if idx in range(len(init_ints_list)):
             init_ints_list.insert(idx, value)
         else:
             print("Invalid placement!")
     elif action == "Strike":
         idx = int(cmd[1])
         radius = int(cmd[2])
-        positive = idx + radius + 1
-        negative = radius * -1
-        rnegative = idx + negative
-        if rnegative >= 0 and 0 <= rnegative < len(init_ints_list) and 0 <= positive < len(init_ints_list):
-            stuff_to_remove = init_ints_list[rnegative:positive]
+        positive = idx + radius
+        negative = idx - radius
+        # rnegative = idx + negative
+        if negative >= 0 and 0 <= negative <= len(init_ints_list) and 0 <= positive <= len(init_ints_list):
+            stuff_to_remove = init_ints_list[negative:positive + 1]
             init_ints_list = [ll for ll in init_ints_list if ll not in stuff_to_remove]
         else:
             print("Strike missed!")
