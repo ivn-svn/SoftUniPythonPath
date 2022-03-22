@@ -9,19 +9,23 @@ while cmd_ != "End":
     if action == "Shoot":
         idx = int(cmd[1])
         power = int(cmd[2])
-        if idx in range(len(init_ints_list)):
+        if idx in range(0, len(init_ints_list)):
             if (init_ints_list[idx] - power) <= 0:
                 init_ints_list.pop(idx)
             else:
                 init_ints_list[idx] -= power
+        elif idx < 0:
+            pass
         else:
             pass
 
     elif action == "Add":
         idx = int(cmd[1])
         value = int(cmd[2])
-        if idx in range(len(init_ints_list)):
+        if idx in range(0, len(init_ints_list)):
             init_ints_list.insert(idx, value)
+        elif idx < 0:
+            print("Invalid placement!")
         else:
             print("Invalid placement!")
     elif action == "Strike":
