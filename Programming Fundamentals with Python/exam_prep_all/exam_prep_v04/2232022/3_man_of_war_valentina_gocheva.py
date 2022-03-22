@@ -1,25 +1,21 @@
+# Solution provided by the Mentor: Valentina Gocheva
+# My solution had 90%, this works 100%
 # https://judge.softuni.org/Contests/Practice/Index/1773#2
 # Functions, fire, defend, repair, status
-def fire(idx, dmg, warship_status, v):
-    if 0 <= idx < len(warship_status):
-        warship_status[idx] -= dmg
-        if warship_status[idx] <= 0:
-            v = True
-            print("You won! The enemy ship has sunken.")
-    return v
+# def fire(idx, dmg, warship_status):
+#     if 0 <= idx < len(warship_status):
+#         warship_status[idx] -= dmg
+#         if warship_status[idx] <= 0:
+#             print("You won! The enemy ship has sunken.")
 
 
-def defend(sidx, eidx, dmg, pirate_status, v):
-    if 0 <= sidx <= len(pirate_status) and 0 <= eidx <= len(pirate_status):
-        for sec in range(sidx, eidx):
-            pirate_status[sec] -= dmg
-            if pirate_status[sec] <= 0:
-                print("You lost! The pirate ship has sunken.")
-                v = True
-                break
-    else:
-        pass
-    return v
+# def defend(sidx, eidx, dmg, pirate_status):
+#     if 0 <= sidx < len(pirate_status) and sidx <= eidx < len(pirate_status):
+#         for sec in range(sidx, eidx + 1):
+#             pirate_status[sec] -= dmg
+#             if pirate_status[sec] <= 0:
+#                 print("You lost! The pirate ship has sunken.")
+#                 break
 
 
 def repair(idx, health, pirate_status):
@@ -46,33 +42,46 @@ pirate_ship_sum = 0
 warship_sum = 0
 #
 stalemate = False
-victory = False
+
 # < / >
 command = ""
+has_winner = False
 #
 while command != "Retire":
     cmd = command.split(" ")
     if "Fire" in cmd:
         idx = int(cmd[1])
         dmg = int(cmd[2])
-        victory = fire(idx, dmg, warship_status, victory)
+        if 0 <= idx < len(warship_status):
+            warship_status[idx] -= dmg
+            if warship_status[idx] <= 0:
+                print("You won! The enemy ship has sunken.")
+                has_winner = True
+                break
+
     elif "Defend" in cmd:
         start_idx = int(cmd[1])
-        end_idx = int(cmd[2]) + 1
+        end_idx = int(cmd[2])
         dmg = int(cmd[3])
-        victory = defend(start_idx, end_idx, dmg, pirate_ship_status, victory)
+        if 0 <= start_idx < len(pirate_ship_status) and start_idx <= end_idx < len(pirate_ship_status):
+            for sec in range(start_idx, end_idx + 1):
+                pirate_ship_status[sec] -= dmg
+                if pirate_ship_status[sec] <= 0:
+                    print("You lost! The pirate ship has sunken.")
+                    has_winner = True
+                    break
+
     elif "Repair" in cmd:
         idx = int(cmd[1])
         health = int(cmd[2])
         repair(idx, health, pirate_ship_status)
     elif "Status" in cmd:
-        repair_needed_warship = count_repairs(warship_status, low_health_alert)z
         repair_needed_pirateship = count_repairs(pirate_ship_status, low_health_alert)
         print(f"{repair_needed_pirateship} sections need repair.")
     command = input()
 
 #
-if not victory:
+if not has_winner:
     pirate_ship_sum = sum(pirate_ship_status)
     warship_sum = sum(warship_status)
     print(f"Pirate ship status: {pirate_ship_sum}")
