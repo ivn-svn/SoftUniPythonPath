@@ -66,7 +66,7 @@ while command != "Retire":
         health = int(cmd[2])
         repair(idx, health, pirate_ship_status)
     elif "Status" in cmd:
-        repair_needed_warship = count_repairs(warship_status, low_health_alert)z
+        repair_needed_warship = count_repairs(warship_status, low_health_alert)
         repair_needed_pirateship = count_repairs(pirate_ship_status, low_health_alert)
         print(f"{repair_needed_pirateship} sections need repair.")
     command = input()
