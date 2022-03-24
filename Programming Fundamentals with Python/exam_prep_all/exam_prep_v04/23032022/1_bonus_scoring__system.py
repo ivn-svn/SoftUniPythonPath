@@ -25,7 +25,5 @@ max_bonus_key = max(zip(attendance_bonus_dict.values(), attendance_bonus_dict.ke
 max_bonus_pts = max(zip(attendance_bonus_dict.values(), attendance_bonus_dict.keys()))[0]  # & referencing the value2key
 stud_attendance = max_bonus_key
 
-max_bonus_pts = math.ceil(max_bonus_pts)
-stud_attendance = math.ceil(stud_attendance)
-print(f"Max Bonus: {max_bonus_pts}.")
-print(f"The student has attended {stud_attendance} lectures.")
+print(f"Max Bonus: {math.ceil(max_bonus_pts)}.")
+print(f"The student has attended {math.ceil(stud_attendance)} lectures.")
