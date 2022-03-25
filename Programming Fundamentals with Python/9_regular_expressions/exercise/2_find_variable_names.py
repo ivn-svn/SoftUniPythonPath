@@ -13,7 +13,8 @@
 # validVariable
 import re
 # pattern = r"(?<!_)\w+"
-pattern = r"((?<=_)[A-z]+(?=_))|((?<=__)[A-z]+)|((?<=_)[A-z]+)|([A-z]+(?=_))"
+pattern = r"((?<=_)[A-z]+(?=_))|((?<=__)[A-z]+)|((?<=_)[A-z]+)|([A-z]+(?=_))|((?<=_)[0-9]+)"
+# pattern = r"((?<=_)[A-z]+(?=_))|((?<=__)[A-z]+)|((?<=_)[A-z]+)|([A-z]+(?=_))|((?<=_)[0-9]+)"
 
 user_input = input()
 matches = re.finditer(pattern, user_input)
