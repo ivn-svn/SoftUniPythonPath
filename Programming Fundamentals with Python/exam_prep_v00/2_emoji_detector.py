@@ -1,19 +1,27 @@
 # https://judge.softuni.org/Contests/Practice/Index/2302#1
 import re
 
-pattern = r"(\d+)"
-user_input = "test"
-output = ""
-while user_input != "":
-    user_input = input()
 
-    matches = re.finditer(pattern, user_input)
-
+def ascii_sum():
+    letter_sums = []
+    letter_sum = 0
     for match in matches:
-        output += match.group(0) + " "
+        for letter in matches:
+            letter_sum += ord(letter)
+        letter_sums.append(letter_sum)
+    return letter_sums
+
+
+pattern = r"(?<=::)([A-Z][a-z][a-z]+)(?=::)|(?<=\*\*)([A-Z][a-z][a-z]+)(?=\*\*)"
+output = []
+user_input = input()
+
+matches = re.finditer(pattern, user_input)
+
+for match in matches:
+    output.append(matches)
 
 
 print(output)
 
 # regex to use:
-# (?<=::)([A-Z][a-z][a-z]+)(?=::)|(?<=\*\*)([A-Z][a-z][a-z]+)(?=\*\*)
