@@ -24,4 +24,3 @@ for word in splited_input:
         emo_list.append(emoticon)
 for each in emo_list:
     print(each, end='\n')
-

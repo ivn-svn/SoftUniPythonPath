@@ -1,8 +1,9 @@
+# https://judge.softuni.org/Contests/Practice/Index/1741#0
 import re
 
 
 def find_name_age(usr_inp, pagd):
-    name_pattern = r"@([A-z][a-z]+)\||@([a-z]+)\||@[a-z]\||@[A-z]\|"
+    name_pattern = r"@([A-z][a-z]+)\||@([a-z]+)\||@([a-z])\||@([A-z])\|"
     age_pattern = r"#(\d+)*|#(\d)*"
 
     name_match = re.findall(name_pattern, usr_inp)
@@ -10,7 +11,7 @@ def find_name_age(usr_inp, pagd):
     age_match = re.findall(age_pattern, usr_inp)
     for item in name_match:
         for item0 in item:
-            if item0 != "":
+            if item0:
                 name = item0
                 pagd[name] = 0
 
@@ -18,7 +19,7 @@ def find_name_age(usr_inp, pagd):
         # for item0 in item1:
         for item2 in item1:
             # print(item2)
-            if item2 != "":
+            if item2:
                 age = int(item2)
                 pagd[name] = age
 

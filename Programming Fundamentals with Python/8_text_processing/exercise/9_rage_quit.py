@@ -1,12 +1,8 @@
-# Every gamer knows what rage-quitting means. It's when you're just not good enough, and you blame everybody else for
-#     losing a game - you press the CAPS LOCK key on the keyboard and flood the chat with gibberish to show your
-#     frustration.
-# Peter is a gamer, a bad one. When he rage-quits, he wants to be the most annoying kid on his team; he wants something
+# When P. rage-quits, he wants to be the most annoying kid on his team; he wants something
 # truly spectacular. He asks for your help.
-# He'll give you a series of strings (containing only non-numerical characters) followed by non-negative numbers (N),' \
-#   ' e.g., "a3". You need to convert the letters to uppercase for each string and print it repeatedly N times on the ' \
+# He'll give you a series of strings (containing only non-numerical characters) followed by non-negative numbers (N),'
+#   ' e.g., "a3". You need to convert the letters to uppercase for each string and print it repeatedly N times on the '
 #   'console.
-#
 #   In the example, you need to write back "AAA".
 # First, on the output, you should print a statistic of the number of unique symbols used (case-insensitive) in the
 # format: "Unique symbols used {0}".
@@ -21,8 +17,20 @@
 #     • The output should be printed on the console. It should consist of exactly two lines:
 #         ◦ On the first line, print the number of unique symbols used in the message in the format described above.
 #         ◦ On the second line, print the rage message.
-# Constraints
-#     • The count of string-number pairs will be in the range [1 … 20 000].
-#     • Each string will contain any character except digits. The length of each string will be in the range [1 … 20].
-#     • The repeat count for each string will be an integer in the range [0 … 20].
-#     • Allowed working time for your program: 0.3 seconds. Allowed memory: 64 MB.
+import re
+
+user_input = input()
+pattern = r"([A-z])(\d)|([A-z])(\d+)|([A-z]+)(\d)|([A-z]+)(\d+)|(\D)(\d)|(\D+)(\d)|(\D)(\d+)|(\D+)(\d+)"
+matches = re.findall(pattern, user_input)
+letter_num_dict = {}
+newstr = ""
+for tup in matches:
+    refined = [x for x in tup if x != ""]
+    letter = refined[0]
+    number = int(refined[1])
+    letter_num_dict[letter] = number
+for (k, v) in letter_num_dict.items():
+    newstr += (k.upper() * v)
+uniqs = len(list(set(newstr)))
+print(f"Unique symbols used: {uniqs}")
+print(newstr)
