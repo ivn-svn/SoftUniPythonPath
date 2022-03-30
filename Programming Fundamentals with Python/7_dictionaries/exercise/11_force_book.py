@@ -19,7 +19,7 @@
 # Members: {force_users_count} ! {force_user1} ! {force_user2} … ! {force_userN}" • In case there are NO force users
 # on a side, don't print this side.
 
-cmd = ""
+cmd = input()
 force_side = ''
 force_user = ''
 side_user_dictionary = dict()
@@ -28,47 +28,48 @@ side_user_dictionary = dict()
 def getkey_by_val(sud, s_item):  # a func to search and pop values: actually pop users
     for (k, v) in sud.items():
         if s_item in v:
-            found = s_item
+            found = v.index(s_item)
             sud[k].pop(found)
             break
     return sud
 
 
 def switch_sides(user, side, sud, signal):
+    list_all_vals = []
+    for tup in sud.values():
+        for vals in tup:
+            list_all_vals.append(vals)
     if signal == "|":
-        if user not in sud.values() and side not in sud.keys():
+        if user not in list_all_vals and side not in sud.keys():
             sud[side] = []
             sud[side].append(user)
-        elif side in sud.keys() and user not in sud.values():
+        elif side in sud.keys() and user not in list_all_vals:
             sud[side].append(user)
-        elif user in sud.values():
+        elif user in list_all_vals:
             pass
     elif signal == "->":
-        if user in sud.values():
+        if user in list_all_vals:
             search_val = user
             sud = getkey_by_val(sud, search_val)
-            if user not in sud.values() and side not in sud.keys():
-                sud[side] = []
-                sud[side].append(user)
-                print(f"{user} joins the {side} side!")
-            elif side in sud.keys() and user not in sud.values():
-                sud[side].append(user)
-                print(f"{user} joins the {side} side!")
-        elif user not in sud.values() and side not in sud.keys():
+            sud[side].append(user)
+            print(f"{user} joins the {side} side!")
+        elif user not in list_all_vals and side not in sud.keys():
             sud[side] = []
             sud[side].append(user)
             print(f"{user} joins the {side} side!")
-        elif side in sud.keys() and user not in sud.values():
+        elif side in sud.keys() and user not in list_all_vals:
             sud[side].append(user)
             print(f"{user} joins the {side} side!")
-
     return sud
 
 
 def printable_func(sud):
     for (side,user) in sud.items():
         side_len = len(sud[side])
-        print(f"Side: {side}, Members: {side_len}")
+        if side_len == 0:
+            pass
+        else:
+            print(f"Side: {side}, Members: {side_len}")
         for person in user:
             print(f"! {person}")
 
