@@ -30,7 +30,6 @@ def getkey_by_val(sud, s_item):  # a func to search and pop values: actually pop
         if s_item in v:
             found = v.index(s_item)
             sud[k].pop(found)
-            break
     return sud
 
 
@@ -64,32 +63,34 @@ def switch_sides(user, side, sud, signal):
 
 
 def printable_func(sud):
-    for (side,user) in sud.items():
+    for (side, user) in sud.items():
         side_len = len(sud[side])
-        if side_len == 0:
+        if side_len <= 0:
             pass
         else:
             print(f"Side: {side}, Members: {side_len}")
-        for person in user:
-            print(f"! {person}")
+            for person in user:
+                print(f"! {person}")
 
 
 while cmd != "Lumpawaroo":
 
-    if "|" in cmd:
+    if " | " in cmd and len(cmd) > 4:
         cmd_split = cmd.split(" | ")
         force_user = cmd_split[1]
         force_side = cmd_split[0]
         signal_char = "|"
         # add function
-        side_user_dictionary = switch_sides(force_user, force_side, side_user_dictionary, signal_char)
-    elif "->" in cmd:
+        if len(force_user) > 0 and len(force_side) > 0:
+            side_user_dictionary = switch_sides(force_user, force_side, side_user_dictionary, signal_char)
+    elif " -> " in cmd and len(cmd) > 4:
         cmd_split = cmd.split(" -> ")
         force_user = cmd_split[0]
         force_side = cmd_split[1]
         signal_char = "->"
         # add function
-        side_user_dictionary = switch_sides(force_user, force_side, side_user_dictionary, signal_char)
+        if len(force_user) > 0 and len(force_side) > 0:
+            side_user_dictionary = switch_sides(force_user, force_side, side_user_dictionary, signal_char)
 
     cmd = input()
 else:
