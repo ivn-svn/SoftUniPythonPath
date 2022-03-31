@@ -21,12 +21,12 @@ class Catalogue:
         self.products.append(product_name)
 
     def get_by_letter(self, first_letter: str):
-        new_list = [x for x in self.products if x[0] == first_letter]
-        return list(new_list)
+        return [x for x in self.products if first_letter == x[0]]
 
     def __repr__(self):
-        printable = catalogue.products
-        return "Items in the {} catalogue: {}".format(self.name, "\n".join(printable))
+        result = f"Items in the {self.name} catalogue:\n"
+        result += '\n'.join(sorted(self.products))
+        return result
         # return self.new_list
 
 
