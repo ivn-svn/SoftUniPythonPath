@@ -17,21 +17,33 @@ import re
 
 line = input()
 participants_list = line.split(', ')
-
-
+participant_distance_dict = {}
 
 while line != 'end of race':
-    num_pattern = r'\d+'
-    letter_pattern = r'\[A-z]{1}'
+    num_pattern = r'(\d+)'
+    letter_pattern = r'([A-z]+)'
     match_letters = re.findall(letter_pattern, line)
     match_nums = re.findall(num_pattern, line)
+    nums_list = []
+    name = ''
+    distance = 0
+    for letter in match_letters:
+        name += letter
+    for number in match_nums:
+        for digit in number:
+            distance += int(digit)
+            nums_list.append(digit)
+    if name in participants_list:
+        if name in participant_distance_dict.keys():
+            participant_distance_dict[name] += distance
+        else:
+            participant_distance_dict[name] = distance
     line = input()
-print(match_letters)
-print(match_nums)
-#
-# import re
-# line = input()
-# num_pattern = r'\d+'
-# letter_pattern = r'\[A-z]{1}'
-# match_letters = re.findall(letter_pattern, line)
-# match_nums = re.findall(num_pattern, line)
+
+participant_distance_dict_sorted_keys = sorted(participant_distance_dict, key=participant_distance_dict.get, reverse=True)
+first = participant_distance_dict_sorted_keys[0]
+second = participant_distance_dict_sorted_keys[1]
+third = participant_distance_dict_sorted_keys[2]
+print(f'1st place: {first}')
+print(f'2nd place: {second}')
+print(f'3rd place: {third}')
