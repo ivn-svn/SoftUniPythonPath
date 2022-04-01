@@ -1,46 +1,22 @@
-# As a good friend, you decide to buy presents for your friends.
-# Create a program that helps you plan the gifts for your friends and family. First, you are going to receive the gifts
-# you plan on buying on a single line, separated by space, in the following format:
-# "{gift1} {gift2} {gift3}… {giftn}"
-# Then you will start receiving commands until you read the "No Money" message. There are three possible commands:
-#     • "OutOfStock {gift}"
-#         ◦ Find the gifts with this name in your collection, if any, and change their values to "None".
-#     • "Required {gift} {index}"
-#         ◦ If the index is valid, replace the gift on the given index with the given gift.
-#     • "JustInCase {gift}"
-#         ◦ Replace the value of your last gift with this one.
-# In the end, print the gifts on a single line, except the ones with value "None",
-# separated by a single space in the following format:
-# "{gift1} {gift2} {gift3} … {giftn}"
-# Input / Constraints
-#     • On the 1st line,  you will receive the names of the gifts, separated by a single space.
-#     • On the following lines, until the "No Money" command is received, you will be receiving commands.
-#     • The input will always be valid.
-# Output
-#     • Print the gifts in the format described above.
-gifts = input().split(' ')
-commands = ''
+initial_gifts_list = input().split(" ")
+cmd = input()
 
-#############
-def cmd_analyzer(cmd, g):
-    if len(cmd) == 2:
-        if cmd[0] == 'OutOfStock':
-            for i in range(len(g) - 1):
-                if g[i] == cmd[1]:
-                    g[i] = 'None'
-        elif cmd[0] == 'JustInCase':
-            gifts[len(g) - 1] = cmd[1]
-    elif len(cmd) == 3:
-        if cmd[0] == 'Required': # check if is required
-            g[int(cmd[2])] = cmd[1]
-    return gifts
-#############
+while cmd != "No Money":
+    inp_lst = cmd.split(" ")
+    gift = inp_lst[1]
+    if "OutOfStock" in inp_lst:
+        for item in initial_gifts_list:
+            if item == gift:
+                idx = initial_gifts_list.index(item)
+                initial_gifts_list[idx] = None
+    elif "Required" in inp_lst:
+        idx = int(inp_lst[2])
+        if 0 <= idx < len(initial_gifts_list):
+            initial_gifts_list[idx] = gift
+    elif "JustInCase" in inp_lst:
+        initial_gifts_list[len(initial_gifts_list) - 1] = gift
 
-while 'No Money' not in str(commands):
-    commands = input()
-    list_commands = commands.split(' ')
-    string_commands = str(commands)
-    gifts = str(cmd_analyzer(list_commands, gifts))
-else:
-    finalgiftslist = str([g for g in list(gifts) if g != 'None'])
-print(finalgiftslist)
+    cmd = input()
+
+printable_list = [it for it in initial_gifts_list if it is not None]
+print(" ".join(printable_list))
