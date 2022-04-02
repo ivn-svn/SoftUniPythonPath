@@ -21,7 +21,7 @@ participant_distance_dict = {}
 
 while line != 'end of race':
     num_pattern = r'(\d+)'
-    letter_pattern = r'([A-z]+)'
+    letter_pattern = r'([a-zA-Z]+)'
     match_letters = re.findall(letter_pattern, line)
     match_nums = re.findall(num_pattern, line)
     nums_list = []
@@ -34,11 +34,14 @@ while line != 'end of race':
             distance += int(digit)
             nums_list.append(digit)
     if name in participants_list:
+        # print(f'{name} in participants list')
         if name in participant_distance_dict.keys():
             participant_distance_dict[name] += distance
-        else:
+        elif name not in participant_distance_dict.keys():
+            # print(f'Adding to dict: {name}')
             participant_distance_dict[name] = distance
     line = input()
+# print(participant_distance_dict)
 
 participant_distance_dict_sorted_keys = sorted(participant_distance_dict, key=participant_distance_dict.get, reverse=True)
 first = participant_distance_dict_sorted_keys[0]
