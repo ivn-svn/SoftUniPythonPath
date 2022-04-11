@@ -5,6 +5,12 @@ lines = int(input())
 
 for i in range(0, lines):
     user_input = input()
+    usr_ct = user_input.count('s')
+    for character in user_input:
+        decrypted_str = ''
+        old_char = character
+        new_char = chr(ord(old_char) - usr_ct)
+        decrypted_str += new_char
 
 
 
