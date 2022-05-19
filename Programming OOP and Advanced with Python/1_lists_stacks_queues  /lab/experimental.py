@@ -9,3 +9,4 @@ print(s.pop())
 print(s.peek())
 print(s.count())
 #
+print("test gitignore gitconfig files")
