@@ -1,6 +1,6 @@
-class Stack:
+# class Stack:
     
-    pass
+#     pass
 s = Stack()
 
 for v in range(5, 10): # 5,
