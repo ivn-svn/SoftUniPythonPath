@@ -1,5 +1,4 @@
 # class Stack:
-    
 #     pass
 s = Stack()
 
