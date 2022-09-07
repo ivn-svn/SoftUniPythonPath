@@ -7,6 +7,7 @@
 # integers on one line, separated by a single space.
 #
 #n = input()
+#
 from collections import deque
 #
 n = '1 2 3 4 5'
