@@ -1,8 +1,6 @@
-# The right way to solve Occurences Count assignment
 # Not preferrable to solve 1_count_occ.py this way
 
-#numbers_string = '-2.5 4 3 2.5 -5.5 4 3 3 -2.5 3'
-numbers_string = input()
+numbers_string = '-2.5 4 3 2.5 -5.5 4 3 3 -2.5 3'
 
 occurences_counts = {}
 
@@ -14,8 +12,5 @@ for number in numbers:
     else: 
         occurences_counts[number] = 1
 
-#print(occurences_counts)
-
-for numb, counts in occurences_counts.items():
-    print(f"{numb} - {counts} times")
+print(occurences_counts)
 

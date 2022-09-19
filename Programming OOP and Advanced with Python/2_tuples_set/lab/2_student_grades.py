@@ -13,33 +13,31 @@
 # The order in which we print the result does not matter.
 
 
-# todo:
 def Average(lst):
     return sum(lst) / len(lst)
   
-# Driver Code
-lst = [15, 9, 55, 41, 35, 20, 62, 49]
-average = Average(lst)
-#
 
 num_studs = int(input())
 
 
 studs_dict = dict()
 
-for i in range(num_studs):
+for i in range(0, num_studs):
     stud = input()
     student = stud.split(' ')[0]
-    mark = float(stud.split(' ')[1])
+    mark = round(float(stud.split(' ')[1]), 2)
     if student in studs_dict.keys():
         studs_dict[student].append(mark)
     else: 
-        studs_dict[student] = list()
-
-
-#print(occurences_counts)
+        studs_dict[student] = [mark]
 
 for students, marks in studs_dict.items():
-    marks = [str(z) for z in marks]
+    # Driver Code 4 Average function
+    marks_float = [round(float(f), 2) for f in marks]
+    lst = marks_float
+    if lst:
+        average = Average(lst)
+    #
+    marks = ["{:.2f}".format(z) for z in marks]
     marks_joined = ' '.join(marks)
-    print(f"{students} -> {marks_joined:.2f}")
+    print(f"{students} -> {marks_joined} (avg: {average:.2f})")
