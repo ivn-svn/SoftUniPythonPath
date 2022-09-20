@@ -1,38 +1,50 @@
-from collections import deque
-from math import dist
+import re 
 
-n_petrol_pumps = int(input())
-petrol_tank = 0 
-thestation = 1
-petrol_amounts = []
-distances = []
-filler = 0 
-counter = 1
-for pump in range(n_petrol_pumps):
+n = int(input())
+
+uninvited = set()
+invited = set()
+
+vip_guests = set()
+reg_guests = set()
+
+vip_regx = r"(\b[0-9]\w{7})"
+reg_regx = r"(\b[A-z]\w{7})"
+#
+uninvited = set()
+for i in range(0, n): 
+    invited.add(input()) 
+
+cmd = input()
+
+while cmd != "END":
+    find_vip = re.findall(vip_regx, cmd)
+    find_reg = re.findall(reg_regx, cmd)
+
+    if find_vip:
+        if find_vip[0] in invited:
+            vip_guests.add(find_vip[0])
+    if find_reg:
+        if find_reg[0] in invited:
+            reg_guests.add(find_reg[0])
+
     cmd = input()
-    petrol_amount = int(cmd.split(' ')[1])
-    distance_pump = int(cmd.split(' ')[0])
-    petrol_amounts.append(petrol_amount)
-    distances.append(distance_pump)
+
+for invitee in invited:
+    if invitee in vip_guests or invitee in reg_guests:
+        pass
+    else:
+        uninvited.add(invitee)
 
 
-capacity = sum(petrol_amounts)
-therange = sum(distances)
+print(len(uninvited))
+newuninvited = []
 
-lengthy = len(petrol_amounts)
+for j in uninvited:
+    newuninvited.append(j)
 
-petrol_amounts = deque(petrol_amounts)
-distances = deque(distances)
+newuninvited = newuninvited.sort()
 
-while petrol_amounts:
-    pamount = petrol_amounts.popleft()
-    distance = distances.popleft()
-    filler += pamount
-    if filler >= therange:
-        thestation = counter
-        break
-    else: 
-        counter += 1 
-
-
-print(thestation)
+for unwanted in newuninvited:
+    if unwanted:
+        print(unwanted)
