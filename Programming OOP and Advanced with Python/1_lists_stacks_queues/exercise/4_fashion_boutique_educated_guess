@@ -1,5 +1,5 @@
 # 5 4 8 6 3 8 7 7 9
-clothes_stack = [int(x) for x in input().split(' ')]
+clothes_stack = [int(x) for x in input().split()]
 capacity = int(input())
 current_capacity = capacity
 # 
@@ -11,10 +11,10 @@ while clothes_stack:
 
     if rack < current_capacity:
         current_capacity -= rack
-    elif current_capacity == capacity and clothes_stack:
+    elif current_capacity == rack and clothes_stack:
         num_racks += 1
         current_capacity = capacity 
-    elif capacity  > current_capacity: 
+    elif rack  > current_capacity: 
         num_racks += 1
         current_capacity = capacity - rack
 

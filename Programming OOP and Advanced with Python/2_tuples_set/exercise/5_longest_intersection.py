@@ -15,9 +15,9 @@ list_intersections = list()
 for i in range(0, n):
     user_input = input()
     range1 = user_input.split("-")[0]
-    range1_ints = [z for z in range(int(range1.split(",")[0]), int(range1.split(",")[1])) + 1]
+    range1_ints = [z for z in range(int(range1.split(",")[0]), int(range1.split(",")[1]) + 1)]
     range2 = user_input.split("-")[1]
-    range2_ints = [y for y in range(int(range2.split(",")[0]), int(range2.split(",")[1])) + 1]
+    range2_ints = [y for y in range(int(range2.split(",")[0]), int(range2.split(",")[1]) + 1)]
     intersection = set()
     for num in range1_ints:
         if num in range2_ints:
@@ -41,4 +41,4 @@ length_longest_intersection = len(longest_intersection_numbers)
 
 
 
-print(f"Longest intersection is [{longest_intersection_numbers}] with length {length_longest_intersection}")
+print(f"Longest intersection is {list(longest_intersection_numbers)} with length {length_longest_intersection}")
