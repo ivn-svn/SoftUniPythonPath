@@ -11,7 +11,7 @@
 # Submit only the class in the judge system.
 # Examples
 class SteamUser:
-    def __init__(self, username:str, games:list, played_hours = 3):
+    def __init__(self, username:str, games:list, played_hours = 0):
         self.username = str(username)
         self.games = list(games)
         self.played_hours = int(played_hours)
@@ -24,6 +24,7 @@ class SteamUser:
         else:            
             return f"{self.game} is not in library"
     def buy_game(self, game):
+        self.game = game
         if self.game not in self.games:
             self.games.append(game)
             return f"{self.username} bought {self.game}"
