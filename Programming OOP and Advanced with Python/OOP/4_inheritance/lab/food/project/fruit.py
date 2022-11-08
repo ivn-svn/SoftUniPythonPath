@@ -1,10 +1,8 @@
-# •	In the fruit.py file, create a class called Fruit with will
-# receive a name (str) and an expiration_date (str) upon initialization.
-# Fruit should inherit from Food.
-# Submit in Judge a zip file of the folder project.
-from food import Food
+from project.food import Food
 
-class Fruit (Food):
-    def _init__(self, name, expiration_date):
-        super().__init__(expiration_date)
+
+class Fruit(Food):
+    def __init__(self, name, expiration_date):
+        # self.expiration_date = expiration_date  # This is wrong.
+        super().__init__(expiration_date)  # This is the correct way
         self.name = name

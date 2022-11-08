@@ -1,5 +1,5 @@
-from animal import Animal
+from project.animal import Animal
 
-class Dog(animal): 
+class Dog(Animal):
     def bark(self):
         return "barking..."

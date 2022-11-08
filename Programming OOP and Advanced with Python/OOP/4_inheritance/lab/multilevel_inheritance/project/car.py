@@ -1,5 +1,6 @@
-from vehicle import Vehicle
+from project.vehicle import Vehicle
 
-class Car:
+
+class Car(Vehicle):
     def drive(self):
         return "driving..."
