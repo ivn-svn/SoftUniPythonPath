@@ -7,7 +7,7 @@ class reverse_iter:
         return self
 
     def __next__(self):
-        if self.next_value > -len(self.l):
+        if self.next_value < -len(self.l):
             raise StopIteration
 
         value_to_return = self.l[self.next_value]
