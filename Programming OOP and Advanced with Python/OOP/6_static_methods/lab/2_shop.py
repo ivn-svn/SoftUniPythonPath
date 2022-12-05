@@ -46,3 +46,4 @@ class Shop:
 # 
 # to follow through the lecture , starting from:
 # https://softuni.bg/trainings/resources/video/73898/video-12-july-2022-ines-ivanova-kenova-python-oop-june-2022/3705
+
