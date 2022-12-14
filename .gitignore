@@ -81,6 +81,7 @@ instance/
 # SoftUni Docs
 *.docx
 *.pptx
+*.pdf
 
 # Sphinx documentation
 docs/_build/
