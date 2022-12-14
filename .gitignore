@@ -78,6 +78,10 @@ instance/
 # Scrapy stuff:
 .scrapy
 
+# SoftUni Docs
+*.docx
+*.pptx
+
 # Sphinx documentation
 docs/_build/
 
