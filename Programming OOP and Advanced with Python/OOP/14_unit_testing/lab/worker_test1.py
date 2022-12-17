@@ -1,15 +1,18 @@
-from unittest import TestCase
-
 from worker import Worker
+from unittest import TestCase
+import unittest
 
 
 class WorkerTests(TestCase):
+
     NAME = 'Test Worker'
     SALARY = 1024
     ENERGY = 2
 
     '''
     THIS CODE'S AUTHOR IS Doncho Minkov, the SoftUni lecturer. 
+    Source:
+    
     '''
 
     def setUp(self) -> None:
@@ -34,7 +37,6 @@ class WorkerTests(TestCase):
             '''
             In Python, the with statement replaces a try-catch block with a concise shorthand. 
             More importantly, it ensures closing resources right after processing them. 
-            A common example of using the with statement is reading or writing to a file.
             '''
         self.assertIsNotNone(ex)
 
@@ -54,4 +56,4 @@ class WorkerTests(TestCase):
         self.assertEqual(expected_info, actual_info)
 
 if __name__ == "__main__":
-    TestCase.unittest.main()
+    unittest.main()
