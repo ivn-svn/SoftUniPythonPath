@@ -1,2 +1,2 @@
 class Vet:
-    def __init__(self):
+    def __init__(cls):
