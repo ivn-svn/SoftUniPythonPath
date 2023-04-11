@@ -1,33 +1,39 @@
 from collections import deque
 
-food_supply_portions = input().split(", ")  # sum the quantity of the last daily food portion  
-satmina_portions = input().split(", ") # with the quantity of the first daily stamina.
-food_supply_portions_ints = [int(f) for f in food_supply_portions]  
-satmina_portions_ints = deque([int(s) for s in satmina_portions]) 
-peaks = {"Vihren": 80, "Kutelo": 90, "Banski Suhodol": 100, "Polezhan": 60, "Kamenitza": 70}
-all_peaks = peaks.copy()
-conquered = deque([])
+# caffeine_mgs = "34, 2, 3".split(", ") # take the last caffeine portion
+# energy_drinks = deque(int(y) for y in  "40, 100, 250".split(", ")) # take 1st energy drink
+caffeine_mgs = input().split(", ") # take the last caffeine portion
+caffeine_mgs = [int(z) for  z in caffeine_mgs]
+energy_drinks = deque(int(y) for y in  input().split(", ")) # take 1st energy drink
 
-while food_supply_portions_ints and satmina_portions_ints and peaks.keys():
-    food = food_supply_portions_ints.pop()
-    stamina = satmina_portions_ints.popleft()
-    peaks_list = peaks.keys()
-    peaks_list = deque(peaks_list)
-    climbing = peaks_list.popleft()
-    if food + stamina >= peaks[climbing]:
-        conquered.append(climbing)
-        del peaks[climbing]
-        # print("Food: ", food, "Stamina: ", stamina)
-        # print("Peak: ", climbing, "  Value: ",  all_peaks[climbing])
+# energy_drinks= deque(input().split(", ")) # take 1st energy drink
+
+total_caffeine = 0
+caffeine_in_drink = 0 
+while caffeine_mgs and energy_drinks and 0 <= caffeine_in_drink <= 300:
+    caffeine = caffeine_mgs.pop()
+    drink = energy_drinks.popleft()
+    caffeine_in_drink = caffeine * drink
+
+    if total_caffeine + caffeine_in_drink <= 300:
+        total_caffeine += caffeine_in_drink 
+        
     else:
-        peaks_list.appendleft(climbing)
+        total_caffeine -= 30
+        energy_drinks.append(drink)
 
-if len(all_peaks.keys()) == len(conquered):
-    print("Alex did it! He climbed all top five Pirin peaks in one week -> @FIVEinAWEEK")
-else: 
-    print("Alex failed! He has to organize his journey better next time -> @PIRINWINS")
 
-if len(conquered) > 0: 
-    print(f"Conquered peaks:")
-    for peak in conquered:
-        print(f"{peak}")
+drinks = ""
+
+for d in range(len(energy_drinks)):
+    drinks += str(energy_drinks[d]) 
+    if d < len(energy_drinks) - 1:
+        drinks += ", "
+
+
+if energy_drinks:
+    print(f'Drinks left: {drinks}')
+else:
+    print(f'At least Stamat wasn\'t exceeding the maximum caffeine.')
+
+print(f'Stamat is going to sleep with {total_caffeine} mg caffeine.')

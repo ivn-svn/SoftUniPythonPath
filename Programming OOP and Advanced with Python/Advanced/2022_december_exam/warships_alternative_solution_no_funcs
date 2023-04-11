@@ -1,0 +1,57 @@
+n = int(input())
+matrix = [list(input()) for _ in range(n)]
+
+directions = ["up", "down", "left", "right"]
+sub_row, sub_col = -1, -1
+mines_hit = 0
+cruisers_left = 3
+
+for row in range(n):
+    for col in range(n):
+        if matrix[row][col] == "S":
+            sub_row, sub_col = row, col
+
+game_on = True
+
+while game_on:
+    if game_on:
+        direction = input()
+        if direction not in directions:
+            continue
+
+        matrix[sub_row][sub_col] = "-"  # mark previous position as empty
+
+        if direction == "up":
+            sub_row -= 1
+        elif direction == "down":
+            sub_row += 1
+        elif direction == "left":
+            sub_col -= 1
+        elif direction == "right":
+            sub_col += 1
+
+        # check if new position is out of bounds
+        if sub_row < 0 or sub_row >= n or sub_col < 0 or sub_col >= n:
+            print("Mission failed, U-9 disappeared! Last known coordinates [{}, {}]!".format(sub_row, sub_col))
+            break
+
+        if matrix[sub_row][sub_col] == "C":
+            matrix[sub_row][sub_col] = "S"  # mark new position as submarine's position
+            cruisers_left -= 1
+            if cruisers_left == 0:
+                print("Mission accomplished, U-9 has destroyed all battle cruisers of the enemy!")
+                game_on = False
+                break
+
+        elif matrix[sub_row][sub_col] == "*":
+            mines_hit += 1
+            matrix[sub_row][sub_col] = "S"  # mark new position as submarine's position
+            if mines_hit == 3:
+                print("Mission failed, U-9 disappeared! Last known coordinates [{}, {}]!".format(sub_row, sub_col))
+                game_on = False
+                break
+    else:
+        break
+
+for row in matrix:
+    print("".join(row))

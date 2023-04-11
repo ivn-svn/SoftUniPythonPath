@@ -5,23 +5,14 @@ letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
 coords_matrix = []
 coords_row = []
 for row in range(8, 0, -1):
+    coords_row = []  # Create a new coords_row list for each row
     for letter in letters:
         coords_row.append(f"{letter}{row}")
-        print(f" {letter}{row} ", end="") 
+     #   print(f" {letter}{row} ", end="")
     coords_matrix.append(coords_row)
-    print("\n")
+   # print("\n")
 
-
-matrix = """- - - - - - b -
-- - - - - - - -
-- - - - - - - -
-- - - - - - - -
-- - - - - - - -
-- w - - - - - -
-- - - - - - - -
-- - - - - - - -"""
-
-matrix = [[sq for sq in r.split(" ")] for r in matrix.split("\n")]
+matrix = [[sq for sq in input().split(" ")] for _ in range(8)]
 
 
 def locatePawns(rows):
@@ -32,82 +23,66 @@ def locatePawns(rows):
                 black = [row, square]
             elif squares[square] == "w":
                 white = [row, square]
-    return white, black, matrix            
+    return white, black            
 
 
-def movePawns(white, black, matrix):
+def printMatrix(matrix):
+    for row in matrix:
+        print(" ".join(row))
+    print()
+
+
+def capturePawn(matrix, turn):
+    white, black = locatePawns(matrix)
+    pawn_capture = False
+    if (white[0] +1) == black[0] or (white[0] -1) == black[0]:
+        if (white[1] +1) == black[1] or (white[1] -1) == black[1]:
+            pawn_capture = True
+            if turn == "white":
+                print(f"Game over! White win, capture on {coords_matrix[black[0]][black[1]]}.")
+            elif turn == "black":
+                print(f"Game over! Black win, capture on {coords_matrix[white[0]][white[1]]}.")
+    return pawn_capture, turn
+    
+
+def movePawns(white, black, matrix, turn):
+    white, black = locatePawns(matrix)
+    game_on = True
     if white[0] == 0:
         game_on = False
-        square = white
         player = "white"
-        print(f"Game over! {player} pawn is promoted to a queen at {square}.")
-        print(game_on)
-        return matrix, game_on, white, black
-
+        print(f"Game over! White pawn is promoted to a queen at {coords_matrix[white[0]][white[1]]}.") #  {white[0]} {white[1]}
     elif black[0] == 7:
         game_on = False
-        square = black
         player = "black"
-        print(f"Game over! {player} pawn is promoted to a queen at {square}.")
-        print(game_on)
-        return matrix, game_on, white, black
-
+        print(f"Game over! Black pawn is promoted to a queen at {coords_matrix[black[0]][black[1]]}.") #  {black[0]}{black[1]}
     else:
-        white[0] = white[0] + 1
-        black[0] = black[0] - 1
+        if turn == "white":
+            matrix[white[0]][white[1]] = "-"
+            white[0] = white[0] - 1
+            turn = "black"
+        else:
+            matrix[black[0]][black[1]] = "-"
+            black[0] = black[0] + 1
+            turn = "white"
+        matrix[white[0]][white[1]] = 'w'
+        matrix[black[0]][black[1]] = 'b'
+    return matrix, game_on, white, black, turn
 
-        print(white[0])
-        print(black[0])
-        game_on = True
-        return matrix, game_on, white, black
 
-
-def buildNewMatrix(matrix):
-    matrix = "\n".join(["".join([square for square in row]) for row in matrix])
-    return matrix
-
-
-player = ""
-square = ""
-
-white, black, matrix = locatePawns(matrix)
+white, black = locatePawns(matrix)
 
 game_on = True
-
+turn = "white"
 while game_on:
-    white, black, matrix = locatePawns(matrix)
-    if white[0] == 0:
-        game_on = False
-        square = white
-        player = "white"
-        print(f"Game over! {player} pawn is promoted to a queen at {square}.")
-        print(game_on)
+    capture, turn = capturePawn(matrix, turn)
+    white, black = locatePawns(matrix)
 
-    elif black[0] == 7:
-        game_on = False
-        square = black
-        player = "black"
-        print(f"Game over! {player} pawn is promoted to a queen at {square}.")
-        print(game_on)
-
-    else:
-        white[0] = white[0] + 1
-        black[0] = black[0] - 1
-
-        print(white[0])
-        print(black[0])
-        game_on = True
-    matrix, game_on, white, black = movePawns(white, black, matrix)
-    matrix = buildNewMatrix(matrix)
-    print(matrix)
-
-print(black)
-print(white)
-print(matrix)
-
-
-# Print either one of the following:
-# If a pawn captures the other, print:
-# print(f"Game over! {player} win, capture on {square}.")
-# If a pawn reaches the last rank, print:
-# print(f"Game over! {player} pawn is promoted to a queen at {square}.")
+    if game_on:
+        if capture:
+            game_on = False
+            break
+        else:
+            matrix, game_on, white, black, turn = movePawns(white, black, matrix, turn)
+    else: 
+        break
