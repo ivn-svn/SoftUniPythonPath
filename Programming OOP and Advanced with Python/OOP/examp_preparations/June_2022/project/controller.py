@@ -45,4 +45,36 @@ class Controller:
         return f"{player_name} sustained successfully with {supply.name}."
 
     def duel(self, first_player_name: str, second_player_name: str) -> str:
-        first_player = next((p for p in self.players if p.name == first
+        first_player = next((p for p in self.players if p.name == first_player_name), None)
+        second_player = next((p for p in self.players if p.name == second_player_name), None)
+        
+        if not first_player or not second_player:
+            return
+
+        if first_player.stamina == 0 and second_player.stamina == 0:
+            return f"Player {first_player_name} does not have enough stamina.\nPlayer {second_player_name} does not have enough stamina."
+        elif first_player.stamina == 0:
+            return f"Player {first_player_name} does not have enough stamina."
+        elif second_player.stamina == 0:
+            return f"Player {second_player_name} does not have enough stamina."
+
+        attacker, defender = (first_player, second_player) if first_player.stamina < second_player.stamina else (second_player, first_player)
+
+        damage = attacker.stamina // 2
+        defender.stamina -= damage
+        if defender.stamina <= 0:
+            defender.stamina = 0
+            return f"Winner: {attacker.name}"
+
+        attacker, defender = defender, attacker
+        damage = attacker.stamina // 2
+        defender.stamina -= damage
+        if defender.stamina <= 0:
+            defender.stamina = 0
+            return f"Winner: {attacker.name}"
+
+        if first_player.stamina > second_player.stamina:
+            return f"Winner: {first_player_name}"
+        else:
+            return f"Winner: {second_player_name}"
+
