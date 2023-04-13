@@ -1,17 +1,17 @@
 class reverse_iter:
-    def __init__(self, l):
-        self.l = l
-        self.next_value = -1
+    def __init__(cls, l):
+        cls.l = l
+        cls.next_value = -1
 
-    def __iter__(self):
-        return self
+    def __iter__(cls):
+        return cls
 
-    def __next__(self):
-        if self.next_value < -len(self.l):
+    def __next__(cls):
+        if cls.next_value < -len(cls.l):
             raise StopIteration
 
-        value_to_return = self.l[self.next_value]
-        self.next_value -= 1
+        value_to_return = cls.l[cls.next_value]
+        cls.next_value -= 1
         return value_to_return
 
 

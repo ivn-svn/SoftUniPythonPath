@@ -1,4 +1,4 @@
-from project.person import Person
+from movie_world.project import Person
 
 
 class Child(Person):

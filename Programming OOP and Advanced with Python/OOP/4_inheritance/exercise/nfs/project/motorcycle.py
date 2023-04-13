@@ -1,4 +1,4 @@
-from project.vehicle import Vehicle
+from movie_world.project import Vehicle
 
 class Motorcycle(Vehicle):
     def __init__(self, fuel, horse_power):

@@ -1,5 +1,4 @@
-from project.dough import Dough
-from project.topping import Topping
+from movie_world.project import Topping
 
 
 class Pizza:

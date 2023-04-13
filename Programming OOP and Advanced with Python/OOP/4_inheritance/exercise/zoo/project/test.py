@@ -1,5 +1,4 @@
-from project.animal import Animal
-from project.mammal import Mammal
+from movie_world.project import Mammal
 
 mammal = Mammal("Stella")
 print(mammal.__class__.__bases__[0].__name__)

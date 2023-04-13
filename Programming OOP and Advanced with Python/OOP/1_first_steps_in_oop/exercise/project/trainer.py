@@ -1,4 +1,4 @@
-from project.pokemon import Pokemon
+from movie_world.project import Pokemon
 class Trainer(Pokemon):
     def __init__(self, name):
         self.name = name

@@ -1,5 +1,12 @@
-from .supply import Supply
+class Supply:
+    def __init__(self, name: str, energy: int):
+        if name == "":
+            raise ValueError("Name cannot be an empty string.")
+        self.name = name
 
-class Food(Supply):
-    def __init__(self, name: str, energy: int = 25):
-        super().__init__(name, energy)
+        if energy < 0:
+            raise ValueError("Energy cannot be less than zero.")
+        self.energy = energy
+
+    def details(self):
+        return f"{self.__class__.__name__}: {self.name}, {self.energy}"
