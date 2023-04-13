@@ -1,4 +1,4 @@
-from project.elf import Elf
+from movie_world.project import Elf
 
 class MuseElf(Elf):
     def __init__(self, username: str, level: int):

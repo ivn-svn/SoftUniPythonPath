@@ -1,4 +1,4 @@
-from project.room import Room
+from movie_world.project import Room
 
 
 class Hotel:

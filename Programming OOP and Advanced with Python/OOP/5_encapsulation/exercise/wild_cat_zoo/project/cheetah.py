@@ -1,4 +1,4 @@
-from project.animal import Animal
+from movie_world.project import Animal
 
 
 class Cheetah(Animal):

@@ -1,4 +1,4 @@
-from project.car import Car
+from movie_world.project import Car
 
 
 class FamilyCar(Car):

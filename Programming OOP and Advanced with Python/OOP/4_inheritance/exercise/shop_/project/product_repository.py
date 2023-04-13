@@ -1,4 +1,4 @@
-from project.product import Product
+from movie_world.project import Product
 
 
 class ProductRepository:

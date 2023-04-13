@@ -1,4 +1,4 @@
-from project.worker import Worker
+from movie_world.project import Worker
 
 
 class Zoo:

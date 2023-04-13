@@ -1,4 +1,4 @@
-from project.food import Food
+from movie_world.project import Food
 
 
 class Fruit(Food):

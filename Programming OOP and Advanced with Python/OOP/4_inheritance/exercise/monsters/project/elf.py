@@ -1,4 +1,4 @@
-from project.hero import Hero
+from movie_world.project import Hero
 
 
 class Elf(Hero):

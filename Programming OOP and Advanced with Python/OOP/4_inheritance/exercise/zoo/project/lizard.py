@@ -1,4 +1,4 @@
-from project.reptile import Reptile
+from movie_world.project import Reptile
 
 
 class Lizard(Reptile):
