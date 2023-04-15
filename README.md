@@ -6,7 +6,7 @@
 My repo also contains:
 - Exam preparation folders
 - Experimental code snippets
-- Useful tiny littly .py programs
+- Useful code snippets
 
 ```
 ..
